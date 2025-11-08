@@ -8,5 +8,5 @@
 ### Task Overview
 
 ### Environment
-- **Python version:**
+- **Python version: Python 3.13.5**
 - **Key libraries:**
