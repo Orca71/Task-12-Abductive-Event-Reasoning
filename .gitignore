@@ -1,2 +1,2 @@
-# Ignore dataset during push, keep it locally
-semeval2026-task12-dataset-main
+# Ignore SemEval official dataset during push, keep it locally
+data/raw
