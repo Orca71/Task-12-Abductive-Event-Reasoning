@@ -1,2 +1,2 @@
 # Ignore SemEval official dataset during push, keep it locally
-data/raw
+data/raw/*
