@@ -1,3 +1,18 @@
-# semeval2026-task12-dataset
+# SemEval 2026 Task 12: Abductive Event Reasoning
+## CSCI-LING 5832 Natural Language Processing Shared Task
 
-This is datasets repo for SemEval 2026-task12 "Abductive Event Reasoning"
+### SemEval 29 Group Members
+- Echo Canaday
+- Shah Nekouei
+- Yifei Zhang
+
+---
+
+### Task Overview
+- This repository contains our implementation for **SemEval 2026 Task 12: Abductive Event Reasoning (AER)**.  
+
+---
+
+### Evaluation
+
+---
