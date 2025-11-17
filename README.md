@@ -1,12 +1,3 @@
-# Task 12 - Abductive Event Reasoning (AER)
-## CSCI-LING 5832-001,002 Natural Language Processing Shared Task
-### SemEval 29 - Team Members
-- **Echo Canaday**
-- **Shah Nekouei**
-- **Yifei Zhang**
+# semeval2026-task12-dataset
 
-### Task Overview
-
-### Environment
-- **Python version: Python 3.13.5**
-- **Key libraries:**
+This is datasets repo for SemEval 2026-task12 "Abductive Event Reasoning"
