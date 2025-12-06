@@ -1,23 +1,45 @@
-from .llm_model import LLMModel
-from .rag_model import RAGModel
-from .deberta_model import DebertaModel
+from typing import Any
 
-def load_model(config):
+from src.models.base_model import TfidfModel
+# from src.models.rag_model import EmbeddingRetrievalModel
+# from src.models.deberta_model import DebertaCausalModel
+# from src.models.llm_model import LLMReasoningModel
+
+
+def load_model(model_name: str, **kwargs) -> Any:
     """
-    Load a model according to config. 
-    config.model_type should be one of:
-        - "llm"
-        - "rag"
-        - "deberta"
+    Factory function for loading different baseline or trained models.
+
+    Args:
+        model_name (str): Name of the model type to load.
+        kwargs: Optional extra parameters (e.g., model path, device, etc.)
+
+    Returns:
+        An initialized model object with a unified .predict(...) interface.
     """
+    model_name = model_name.lower()
 
-    model_type = getattr(config, "model_type", None)
+    if model_name == "tfidf":
+        print("Loading TF-IDF baseline model...")
+        return TfidfModel(**kwargs)
 
-    if model_type == "llm":
-        return LLMModel(config)
-    elif model_type == "rag":
-        return RAGModel(config)
-    elif model_type == "deberta":
-        return DebertaModel(config)
+    # elif model_name == "embedding":
+    #     print("Loading embedding-based retrieval model...")
+    #     return EmbeddingRetrievalModel(**kwargs)
+
+    # elif model_name == "deberta":
+    #     print("Loading fine-tuned DeBERTa model...")
+    #     return DebertaCausalModel(**kwargs)
+
+    # elif model_name == "llm":
+    #     print("Loading large language model reasoning baseline...")
+    #     return LLMReasoningModel(**kwargs)
+
     else:
-        raise ValueError(f"Unknown model type: {model_type}")
+        raise ValueError(f"Unknown model name: {model_name}")
+
+
+if __name__ == "__main__":
+    # Example usage
+    model = load_model("tfidf")
+    print(f"Model loaded: {type(model).__name__}")
