@@ -2,7 +2,7 @@
 
 This repository contains the implementation for **Abductive Event Reasoning (AER)**, developed as part of **SemEval Task 12**.
 
-## Team Member
+## Team Members
 ***University of Colorado Boulder***  
 
 ***Department of Data Science***
