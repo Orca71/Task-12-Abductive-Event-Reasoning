@@ -14,16 +14,19 @@ This repository contains the implementation for **Abductive Event Reasoning (AER
 
 ## Overview
 
-Abductive event reasoning aims to identify the most plausible explanation for an observed event — a task that remains challenging for current large language models (LLMs).  
-This work introduces an **Abductive Space Framework**, which treats abductive plausibility as a representational dimension partly independent of semantic similarity.
+Abductive event reasoning aims to identify the most plausible explanation for an observed event. However, current large language models often fail to distinguish between explanations that are lexically similar but abductively distinct.  
 
-Our approach uses a **dual-hypothesis formulation**:
+This project explores the hypothesis that **abductive plausibility** occupies a representational dimension largely absent from standard semantic embedding spaces. To test this, we introduce a **dual-hypothesis framework** that contrasts three types of explanations:
 
-- **H<sub>a</sub>** — the gold explanation (reference hypothesis)  
-- **H<sub>b</sub>** — an evidence-derived hypothesis, built from retrieved texts  
-- **H<sub>w</sub>** — a contrastive incorrect hypothesis  
+- **H<sub>a</sub>** — the gold (human-aligned) explanation  
+- **H<sub>b</sub>** — an evidence-derived explanation retrieved from real-world text  
+- **H<sub>w</sub>** — a deliberately inverted (abductively incorrect) explanation  
 
-Each hypothesis is encoded using a frozen sentence encoder, and a lightweight scoring model attempts to recover an **abductive axis** that ranks hypotheses by explanatory adequacy.
+Using **RST-guided hypothesis construction**, **frozen BGE-small embeddings**, and several **contrastive and ranking objectives** (Triplet loss, Margin Ranking, InfoNCE, and Difference-Vector variants), we attempt to recover an *abductive axis* capable of separating these hypotheses by explanatory adequacy.  
+
+Across all experiments, training collapses: embeddings of all hypotheses remain nearly identical (cosine similarity ≈ 0.93–0.94), and no projection head succeeds in isolating abductive structure. These findings provide empirical evidence that abductive distinctions are **not encoded** in frozen semantic representations and likely require joint fine-tuning or architectures explicitly grounded in **causal** or **discourse-level reasoning**.  
+
+Our results highlight the fundamental limitations of current embedding models for abductive inference and motivate future research into representations that capture explanatory adequacy beyond surface semantics.
 
 ## Results
 
