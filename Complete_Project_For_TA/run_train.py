@@ -1,5 +1,3 @@
-# run_train.py — DIFFERENCE-BASED INFONCE
-
 import os
 import json
 import torch
@@ -9,9 +7,6 @@ import torch.nn.functional as F
 from aer.models.encoder.encoder import AEREncoder
 
 
-# ======================================
-# CONFIG
-# ======================================
 MODEL_NAME = "BAAI/bge-small-en-v1.5"
 TRAIN_PATH = "/workspace/encoder_train.jsonl"
 CKPT_DIR = "/workspace/ckpts"
@@ -24,9 +19,6 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 TEMPERATURE = 0.05
 
 
-# ======================================
-# DATASET
-# ======================================
 class AERDataset(Dataset):
     def __init__(self, path):
         with open(path, "r", encoding="utf-8") as f:
@@ -46,10 +38,6 @@ def collate(batch):
     H_w = [x[2] for x in batch]
     return H_a, H_b, H_w
 
-
-# ======================================
-# DIFFERENCE-BASED INFONCE
-# ======================================
 def info_nce_diff(pos, neg, temperature):
     pos = F.normalize(pos, dim=-1)
     neg = F.normalize(neg, dim=-1)
@@ -63,17 +51,12 @@ def info_nce_diff(pos, neg, temperature):
 
     return F.cross_entropy(logits, labels)
 
-
-# ======================================
-# TRAIN LOOP
-# ======================================
 def train():
     dataset = AERDataset(TRAIN_PATH)
     loader = DataLoader(dataset, batch_size=BATCH, shuffle=True, collate_fn=collate)
 
     model = AEREncoder(model_name=MODEL_NAME, proj_dim=256).to(DEVICE)
 
-    # Freeze backbone ONLY
     for p in model.transformer.parameters():
         p.requires_grad = False
 
