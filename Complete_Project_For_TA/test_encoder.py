@@ -1,12 +1,10 @@
-# test_encoder.py
-
 from aer.models.encoder.hypo_encoder import HypothesisEncoder, encode_hypothesis_set
 
 def main():
     print("\n=== INITIALIZING ENCODER ===")
     encoder = HypothesisEncoder()
 
-    # Small test hypotheses
+
     h_a = "A man fired twice at Shinzo Abe, causing his assassination."
     h_b = "Former Prime Minister Shinzo Abe was shot and killed during a public speech."
     h_wrong = [
@@ -34,3 +32,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
